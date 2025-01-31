@@ -6,12 +6,12 @@ namespace CoreTaxXlsxReader;
 
 public class TaxInvoiceReader
 {
-    public TaxInvoiceBulk ReadFile()
+    public TaxInvoiceBulk ReadFile(string filePath)
     {
         TaxInvoiceBulk result = new();
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-        using (ExcelPackage package = new(@"CoreTax.xlsx"))
+        using (ExcelPackage package = new(filePath))
         {
             ExcelWorksheet invoiceSheet = package.Workbook.Worksheets["Faktur"];
             result.TIN = invoiceSheet.Cells[1, 3].Text;
